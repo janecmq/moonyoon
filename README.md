@@ -11,6 +11,7 @@ Static sites hosted on [moonyoon.com](https://moonyoon.com) via GitHub Pages.
 It goes live at `https://moonyoon.com/my-site/` in about a minute.
 
 - `sites/index.html` is the homepage (moonyoon.com)
+- `sites/assets/` holds the homepage images
 - Use relative links inside a site (`style.css`, not `/style.css`)
 - Deploys run from `.github/workflows/deploy.yml`; check progress in the Actions tab
 
