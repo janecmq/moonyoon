@@ -21,12 +21,14 @@ a{color:#dcef7f}a:hover{color:#ffffff}
 .d2{animation-delay:-1.4s;animation-duration:4.8s}
 .d3{animation-delay:-2.3s;animation-duration:5.4s}
 .d4{animation-delay:-3.1s;animation-duration:4.2s}
-@keyframes moonglow{0%,100%{filter:drop-shadow(0 0 6px rgba(220,239,127,.35)) drop-shadow(0 0 18px rgba(220,239,127,.15))}50%{filter:drop-shadow(0 0 12px rgba(220,239,127,.7)) drop-shadow(0 0 36px rgba(220,239,127,.35))}}
-.mark{filter:drop-shadow(0 0 8px rgba(220,239,127,.45)) drop-shadow(0 0 24px rgba(220,239,127,.2));animation:rise 1.2s ease-out both,bob 6s ease-in-out 1.2s infinite,moonglow 4s ease-in-out 1.2s infinite}
+@keyframes moonglow{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
+.mark{position:relative;display:block;width:72px;height:72px;will-change:transform;animation:rise 1.2s ease-out both,bob 6s ease-in-out 1.2s infinite}
+.mark img{position:relative;display:block;width:72px;height:72px;filter:drop-shadow(0 0 8px rgba(220,239,127,.45))}
+.halo{position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(220,239,127,.38) 0%,rgba(220,239,127,.14) 40%,rgba(220,239,127,0) 70%);will-change:opacity,transform;animation:moonglow 4s ease-in-out 1.2s infinite}
 .word{animation:rise 1.4s ease-out .3s both}
 .line{animation:rise 1.4s ease-out .9s both,glow 5s ease-in-out 2.3s infinite}
 .foot{animation:rise 1.4s ease-out 1.4s both}
-@media (prefers-reduced-motion: reduce){.tw,.mark,.word,.line,.foot{animation:none}}
+@media (prefers-reduced-motion: reduce){.tw,.mark,.halo,.word,.line,.foot{animation:none}}
 </style>
 </head>
 <body>
@@ -42,7 +44,7 @@ a{color:#dcef7f}a:hover{color:#ffffff}
 <div class="tw d2" aria-hidden="true" style="position: absolute; left: 6%; top: 52%; width: 3px; height: 3px; border-radius: 9999px; background: #fbf7ef; opacity: 0.5;"></div>
 
 <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; width: 100%; max-width: 560px;">
-<img class="mark" src="assets/moon.svg" alt="" style="width: 72px; height: 72px;">
+<span class="mark" aria-hidden="true"><span class="halo"></span><img src="assets/moon.svg" alt=""></span>
 <h1 class="word" style="margin: 0; line-height: 0;"><img src="assets/wordmark.svg" alt="moonyoon" style="display: block; width: clamp(260px, 56vw, 520px); height: auto;"></h1>
 <p class="line" style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; font-size: 24px; line-height: 32px; color: #cfc2f5;">something for little ears. <span style="color: #f7a978;">coming soon.</span></p>
 
