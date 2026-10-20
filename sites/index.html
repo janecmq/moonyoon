@@ -72,20 +72,23 @@ body{margin:0;background:var(--night-surface)}
 [data-mode=yoon] .yoon,[data-mode=moon] .moon{transition:opacity .5s .6s}
 
 .word{margin:0;line-height:0;animation:rise 1.4s ease-out .3s both}
-.wordmark{display:block;width:clamp(260px,56vw,520px);aspect-ratio:9840/1452;background:var(--night-ink);-webkit-mask:url(assets/wordmark.svg) center/contain no-repeat;mask:url(assets/wordmark.svg) center/contain no-repeat;transition:background-color .9s .2s}
+.wordmark{display:block;width:clamp(262px,56.5vw,524px);aspect-ratio:9920/1532;background:var(--night-ink);-webkit-mask:url(assets/wordmark.svg) center/contain no-repeat;mask:url(assets/wordmark.svg) center/contain no-repeat;transition:background-color .9s .2s}
 .line{margin:0;font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;line-height:32px;color:var(--lilac);animation:rise 1.4s ease-out .9s both,glow 5s ease-in-out 2.3s infinite;transition:color .9s .2s}
-.soon{position:relative;display:inline-block;isolation:isolate;color:var(--tangerine);transition:color .9s .2s}
-.soon::before{content:"";position:absolute;z-index:-1;left:-4px;right:-4px;top:54%;height:25px;transform:translateY(-50%);background:url(assets/doodles/scribble.svg) center/100% 100% no-repeat;opacity:0;clip-path:inset(0 100% 0 0);transition:opacity .3s,clip-path .7s cubic-bezier(.65,0,.35,1)}
+.soon{position:relative;display:inline-block;isolation:isolate;color:var(--on-fill)}
+.soon::before{content:"";position:absolute;z-index:-1;left:-4px;right:-4px;top:54%;height:25px;transform:translateY(-50%);background:url(assets/doodles/scribble.svg) center/100% 100% no-repeat;clip-path:inset(0 100% 0 0)}
+.soon.draw::before{animation:draw .7s cubic-bezier(.65,0,.35,1) var(--draw-delay,0s) both}
+[data-mode=moon] .soon::before{top:50%;height:46px;left:-8px;right:-8px}
+@keyframes draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .foot{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-size:12px;line-height:16px;font-weight:500;letter-spacing:.02em;color:var(--night-muted);animation:rise 1.4s ease-out 1.4s both;transition:color .9s .2s}
 [data-mode=yoon] .wordmark{background-color:var(--day-ink)}
-[data-mode=yoon] .line,[data-mode=yoon] .soon{color:var(--day-ink)}
-[data-mode=yoon] .soon::before{opacity:1;clip-path:inset(0 0 0 0);transition-delay:.9s}
+[data-mode=yoon] .line{color:var(--day-ink)}
 [data-mode=yoon] .foot{color:var(--day-muted)}
 
 @media (max-width:480px){.toggle{top:16px;right:16px}.scene{--x:calc(100% - 66px);--y:42px}}
 @media (prefers-reduced-motion:reduce){
   .star,.doodle,.slot,.bob,.halo,.word,.line,.foot{animation:none}
-  .day,.wheel,.body,.thumb,.wordmark,.line,.soon,.soon::before,.foot,.toggle,.toggle button{transition:none!important}
+  .soon::before{clip-path:none!important;animation:none!important}
+  .day,.wheel,.body,.thumb,.wordmark,.line,.foot,.toggle,.toggle button{transition:none!important}
 }
 </style>
 </head>
@@ -129,7 +132,7 @@ body{margin:0;background:var(--night-surface)}
     </div>
   </div>
   <h1 class="word"><span class="wordmark" role="img" aria-label="moonyoon"></span></h1>
-  <p class="line">something for little ears. <span class="soon">coming soon.</span></p>
+  <p class="line">something for little ears. <span class="soon draw" style="--draw-delay:1.9s">coming soon.</span></p>
 </div>
 
 <footer class="foot">© 2026 moonyoon</footer>
@@ -138,6 +141,7 @@ body{margin:0;background:var(--night-surface)}
 (function () {
   var scene = document.querySelector('.scene');
   var wheel = document.querySelector('.wheel');
+  var soon = document.querySelector('.soon');
   var icon = document.querySelector('link[rel=icon]');
   var buttons = document.querySelectorAll('.toggle button');
   var turn = 0;
@@ -162,6 +166,12 @@ body{margin:0;background:var(--night-surface)}
       scene.dataset.mode = mode;
       buttons.forEach(function (o) { o.setAttribute('aria-pressed', String(o === btn)); });
       icon.href = 'assets/' + mode + '.svg';
+
+      // redraw the highlight once the new scene has settled
+      soon.classList.remove('draw');
+      soon.style.setProperty('--draw-delay', '.9s');
+      void soon.offsetWidth;
+      soon.classList.add('draw');
     });
   });
 })();
