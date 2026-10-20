@@ -25,7 +25,7 @@ html.day,html.day body{background:var(--day-surface)}
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glow{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:.75}}
 @keyframes pulse{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
 @keyframes wobble{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(8deg) translateY(-6px)}}
 
@@ -64,12 +64,12 @@ html.day,html.day body{background:var(--day-surface)}
 .wheel{position:absolute;inset:0;transform-origin:50% 260px;transform:rotate(var(--turn,0deg));transition:transform 1.2s cubic-bezier(.65,0,.35,1)}
 .body{position:absolute;left:0;width:72px;height:72px;transition:opacity .4s}
 .body img{position:relative;display:block;width:72px;height:72px}
-.bob{position:relative;display:block;animation:bob 6s ease-in-out 1.2s infinite}
+.bob{position:relative;display:block;animation:bob 6s ease-in-out 1.2s infinite both}
 .moon{top:0}
 .moon img{filter:drop-shadow(0 0 8px rgba(220,239,127,.45))}
 .yoon{top:448px;transform:rotate(180deg);opacity:0}
 .yoon img{width:84px;height:84px;margin:-6px}
-.halo{position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(220,239,127,.38) 0%,rgba(220,239,127,.14) 40%,rgba(220,239,127,0) 70%);animation:pulse 4s ease-in-out 1.2s infinite}
+.halo{position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(220,239,127,.38) 0%,rgba(220,239,127,.14) 40%,rgba(220,239,127,0) 70%);animation:pulse 4s ease-in-out 1.2s infinite both}
 [data-mode=yoon] .moon{opacity:0}
 [data-mode=yoon] .yoon{opacity:1}
 [data-mode=yoon] .yoon,[data-mode=moon] .moon{transition:opacity .5s .6s}
