@@ -33,3 +33,16 @@ Delete the default parking records, then add:
 1. Source: **GitHub Actions**
 2. Custom domain: `moonyoon.com`, then Save
 3. Once the DNS check passes, tick **Enforce HTTPS**
+
+### moonyoon.co (redirects to moonyoon.com)
+
+GitHub Pages only serves one custom domain, so moonyoon.co forwards to moonyoon.com.
+
+In Namecheap (Domain List > moonyoon.co > Manage > Advanced DNS), delete the default parking records, then add:
+
+| Type         | Host | Value                  | Redirect type   |
+|--------------|------|------------------------|-----------------|
+| URL Redirect | @    | https://moonyoon.com/  | Permanent (301) |
+| URL Redirect | www  | https://moonyoon.com/  | Permanent (301) |
+
+Paths carry over, so `moonyoon.co/hello` lands on `moonyoon.com/hello`.
