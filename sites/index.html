@@ -72,23 +72,23 @@ body{margin:0;background:var(--night-surface)}
 [data-mode=yoon] .yoon,[data-mode=moon] .moon{transition:opacity .5s .6s}
 
 .word{margin:0;line-height:0;animation:rise 1.4s ease-out .3s both}
-.wordmark{display:block;width:clamp(262px,56.5vw,524px);aspect-ratio:9920/1532;background:var(--night-ink);-webkit-mask:url(assets/wordmark.svg) center/contain no-repeat;mask:url(assets/wordmark.svg) center/contain no-repeat;transition:background-color .9s .2s}
+.wordmark{display:block;width:clamp(262px,56.5vw,524px);aspect-ratio:9920/1532;background:var(--night-ink);-webkit-mask:url(assets/wordmark.svg?v=2) center/contain no-repeat;mask:url(assets/wordmark.svg?v=2) center/contain no-repeat;transition:background-color .9s .2s}
 .line{margin:0;font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;line-height:32px;color:var(--lilac);animation:rise 1.4s ease-out .9s both,glow 5s ease-in-out 2.3s infinite;transition:color .9s .2s}
-.soon{position:relative;display:inline-block;isolation:isolate;color:var(--on-fill)}
-.soon::before{content:"";position:absolute;z-index:-1;left:-4px;right:-4px;top:54%;height:25px;transform:translateY(-50%);background:url(assets/doodles/scribble.svg) center/100% 100% no-repeat;clip-path:inset(0 100% 0 0)}
+.soon{position:relative;display:inline-block;isolation:isolate;color:var(--night-ink);transition:color .9s .2s}
+.soon::before{content:"";position:absolute;z-index:-1;left:-4px;right:-4px;top:54%;height:25px;transform:translateY(-50%);background:url(assets/doodles/scribble.svg?v=2) center/100% 100% no-repeat;clip-path:inset(0 100% 0 0)}
 .soon.draw::before{animation:draw .7s cubic-bezier(.65,0,.35,1) var(--draw-delay,0s) both}
-[data-mode=moon] .soon::before{top:50%;height:46px;left:-8px;right:-8px}
+[data-mode=moon] .soon::before{background-image:url(assets/doodles/scribble-night.svg?v=2)}
 @keyframes draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .foot{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-size:12px;line-height:16px;font-weight:500;letter-spacing:.02em;color:var(--night-muted);animation:rise 1.4s ease-out 1.4s both;transition:color .9s .2s}
 [data-mode=yoon] .wordmark{background-color:var(--day-ink)}
-[data-mode=yoon] .line{color:var(--day-ink)}
+[data-mode=yoon] .line,[data-mode=yoon] .soon{color:var(--day-ink)}
 [data-mode=yoon] .foot{color:var(--day-muted)}
 
 @media (max-width:480px){.toggle{top:16px;right:16px}.scene{--x:calc(100% - 66px);--y:42px}}
 @media (prefers-reduced-motion:reduce){
   .star,.doodle,.slot,.bob,.halo,.word,.line,.foot{animation:none}
   .soon::before{clip-path:none!important;animation:none!important}
-  .day,.wheel,.body,.thumb,.wordmark,.line,.foot,.toggle,.toggle button{transition:none!important}
+  .day,.wheel,.body,.thumb,.wordmark,.line,.soon,.foot,.toggle,.toggle button{transition:none!important}
 }
 </style>
 </head>
@@ -106,12 +106,12 @@ body{margin:0;background:var(--night-surface)}
 </div>
 <div class="sky day" aria-hidden="true">
   <div class="grain"></div>
-  <img class="doodle d1" src="assets/doodles/sparkle.svg" alt="" style="left:12%;top:18%">
-  <img class="doodle d2" src="assets/doodles/heart.svg" alt="" style="left:80%;top:22%;width:30px;height:30px">
-  <img class="doodle d3" src="assets/doodles/star.svg" alt="" style="left:18%;top:74%;width:30px;height:30px">
-  <img class="doodle d4" src="assets/doodles/loop.svg" alt="" style="left:76%;top:76%;width:44px;height:44px">
-  <img class="doodle d2" src="assets/doodles/sparkle.svg" alt="" style="left:88%;top:52%;width:24px;height:24px">
-  <img class="doodle d3" src="assets/doodles/star.svg" alt="" style="left:6%;top:46%;width:22px;height:22px">
+  <img class="doodle d1" src="assets/doodles/sparkle.svg?v=2" alt="" style="left:12%;top:18%">
+  <img class="doodle d2" src="assets/doodles/heart.svg?v=2" alt="" style="left:80%;top:22%;width:30px;height:30px">
+  <img class="doodle d3" src="assets/doodles/star.svg?v=2" alt="" style="left:18%;top:74%;width:30px;height:30px">
+  <img class="doodle d4" src="assets/doodles/loop.svg?v=2" alt="" style="left:76%;top:76%;width:44px;height:44px">
+  <img class="doodle d2" src="assets/doodles/sparkle.svg?v=2" alt="" style="left:88%;top:52%;width:24px;height:24px">
+  <img class="doodle d3" src="assets/doodles/star.svg?v=2" alt="" style="left:6%;top:46%;width:22px;height:22px">
 </div>
 
 <div class="toggle" role="group" aria-label="Choose moon or yoon">
