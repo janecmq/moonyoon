@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>moonyoon</title>
 <meta name="description" content="something for little ears. coming soon.">
+<meta name="theme-color" content="#1d1b3f">
 <link rel="icon" href="assets/moon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&amp;display=swap">
@@ -17,7 +18,9 @@
   --display:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
 }
-body{margin:0;background:var(--night-surface)}
+html,body{background:var(--night-surface);transition:background-color .6s .35s}
+body{margin:0}
+html.day,html.day body{background:var(--day-surface)}
 
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
@@ -143,6 +146,7 @@ body{margin:0;background:var(--night-surface)}
   var wheel = document.querySelector('.wheel');
   var soon = document.querySelector('.soon');
   var icon = document.querySelector('link[rel=icon]');
+  var theme = document.querySelector('meta[name=theme-color]');
   var buttons = document.querySelectorAll('.toggle button');
   var turn = 0;
 
@@ -166,6 +170,10 @@ body{margin:0;background:var(--night-surface)}
       scene.dataset.mode = mode;
       buttons.forEach(function (o) { o.setAttribute('aria-pressed', String(o === btn)); });
       icon.href = 'assets/' + mode + '.svg';
+
+      // tint the phone's browser bars to match
+      document.documentElement.classList.toggle('day', mode === 'yoon');
+      setTimeout(function () { theme.content = mode === 'yoon' ? '#f3ecdf' : '#1d1b3f'; }, 500);
 
       // redraw the highlight once the new scene has settled
       soon.classList.remove('draw');
